@@ -1,0 +1,6 @@
+{
+  "name": "Two Idiots Studio — Custom Fridge Magnets & Photo Badges",
+  "description": "Your memories, but make them CUTE! Handcrafted custom photo fridge magnets, polaroid magnets, daisy magnets, and pin button badges shipped across India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

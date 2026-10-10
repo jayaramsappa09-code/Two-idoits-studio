@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fredoka", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-cream: #FAF3EA;
+  --color-cream-deep: #F3E6D6;
+  --color-brown: #5B3A29;
+  --color-brown-muted: #7C5846;
+  --color-terracotta: #C9714F;
+  --color-terracotta-dark: #B25B3A;
+  --color-sage: #8FA58B;
+  --color-sage-light: #E5ECE3;
+  --color-pink: #F4B6C2;
+  --color-pink-light: #FCE8EC;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: #5B3A29;
+    background-color: #FAF3EA;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+/* Tactile Magnet "Snap" Hover & Active Effects (compositor-only, <=180ms) */
+.magnet-snap {
+  transition: transform 170ms cubic-bezier(0.16, 1, 0.3, 1), opacity 170ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.magnet-snap:hover {
+  transform: translateY(-3px) rotate(-0.8deg) scale(1.015);
+}
+
+.magnet-snap:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+/* Sticker / Magnet Depth Shadows */
+.shadow-sticker {
+  box-shadow: 0 4px 0 #5B3A29, 0 8px 20px rgba(91, 58, 41, 0.08);
+}
+
+.shadow-sticker-sm {
+  box-shadow: 0 2.5px 0 #5B3A29;
+}
+
+.shadow-magnet {
+  box-shadow: 
+    0 3px 0 rgba(91, 58, 41, 0.85),
+    0 10px 24px -4px rgba(91, 58, 41, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+/* Single tasteful entrance animation on hero load */
+@keyframes heroEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-enter {
+  animation: heroEntrance 550ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes snapPulse {
+  0% {
+    transform: scale(1.12) rotate(-3deg);
+  }
+  65% {
+    transform: scale(0.96) rotate(0.5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.animate-magnet-slap {
+  animation: snapPulse 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .magnet-snap:hover,
+  .magnet-snap:active {
+    transform: none !important;
+  }
+}
